@@ -70,7 +70,7 @@ The application returns a simple response in the browser confirming that the Spr
 
 ### Screenshots – Task 1
 
-> Add screenshots here:
+![GET request](./images/16.png)
 - Application running in IntelliJ
 - Browser response on localhost
 
@@ -136,23 +136,30 @@ The application uses an **H2 in-memory database**.
 http://localhost:8081/console
 
 
-**JDBC URL:**
-
+**JDBC URL:** jdbc:h2:mem:testdb
 
 ---
 
 ## REST API Endpoints
 
+### Get All Products
+
+GET /api/v1/products
+![Get all products](./images/2.png)
+
+The H2 Database is empty
+![Database](./images/1.png)
+
 ### Create Product
 
 POST /api/v1/products
 
-
 **Request Body (JSON):**
 ```json
 {
-  "name": "Example product"
+  "name": "First product"
 }
+```
 
 Response:
 
@@ -160,122 +167,163 @@ Response:
 
 * Returns the created product with generated ID
 
-Get Product by ID
+![Create product](./images/3.png)
 
-GET /api/v1/products/{id}
+**The Database has one product**
+![Database with one product](./images/4.png)
+
+### Create another product
+
+POST /api/v1/products
+
+**Request Body (JSON):**
+```json
+{
+  "name": "Second product"
+}
+```
 
 Response:
 
-200 OK – product found
+* HTTP Status: 201 Created
 
-404 Not Found – product does not exist
+* Returns the created product with generated ID
 
-Get All Products
+![Create another product](./images/5.png)
+
+The Database has two products
+![Database with two products](./images/6.png)
+
+### Get All Products
+
 GET /api/v1/products
+![Get all products](./images/7.png)
 
+### Update product
 
-Response:
-
-200 OK
-
-Returns a list of all products (can be empty)
-
-Update Product
 PUT /api/v1/products/{id}
 
+**Request Body (JSON):**
 
-Request Body (JSON):
-
+```json
 {
-  "name": "Updated product name"
+  "name": "2 Product after update"
 }
-
+```
 
 Response:
 
-200 OK
+* HTTP Status: 200 OK
 
-Returns product state before update
+* Returns product state after update
 
-Delete Product
+![Update product](./images/8.png)
+
+**The updated Database**
+![Updated Database](./images/9.png)
+
+### Get All Products
+
+GET /api/v1/products
+![Get all products](./images/10.png)
+
+### Delete Product
+
 DELETE /api/v1/products/{id}
 
+Response:
+
+* HTTP Status: 204 No Content – deletion successful
+
+![Delete product](./images/11.png)
+
+**The Database after deletion**
+![Updated Database](./images/12.png)
+
+### Get All Products
+
+GET /api/v1/products
+![Get all products](./images/13.png)
+
+## Exception Handling
+
+**The application includes custom exception handling:**
+
+* ProductNotFoundException
+
+* Centralized exception handling using @ControllerAdvice
+
+* Meaningful error messages returned to the client
+
+* Proper HTTP status codes instead of generic server errors
+
+### Update a non-existing product
+
+PUT /api/v1/products/{non-existing id}
+
+**Request Body (JSON):**
+
+```json
+{
+  "name": "2 Product after update"
+}
+```
 
 Response:
 
-204 No Content – deletion successful
+* HTTP Status: 404 Not Found - product was not found
 
-404 Not Found – product not found
+![Update non-existing product](./images/14.png)
 
-Exception Handling
+### Delete a non-existing product
 
-The application includes custom exception handling:
+DELETE /api/v1/products/{non-existing id}
 
-ProductNotFoundException
+Response:
 
-Centralized exception handling using @ControllerAdvice
+* HTTP Status: 404 Not Found - product was not found
 
-Meaningful error messages returned to the client
+![Update non-existing product](./images/15.png)
 
-Proper HTTP status codes instead of generic server errors
+* Swagger / OpenAPI Documentation
 
-Swagger / OpenAPI Documentation
+* Swagger UI is included to visualize and test the API.
 
-Swagger UI is included to visualize and test the API.
+**Swagger UI**
+http://localhost:8081/swagger-ui/index.html
 
-Swagger UI
-http://localhost:8080/swagger-ui/index.html
-
-OpenAPI JSON
-http://localhost:8080/v3/api-docs
+**OpenAPI JSON**
+http://localhost:8081/v3/api-docs
 
 
 Swagger allows testing endpoints directly from the browser and provides automatic API documentation.
 
-Testing
+**Testing**
 
 The application was tested using:
 
-Postman
+* Postman
 
-Swagger UI
+* Swagger UI
 
-H2 Database Console
+* H2 Database Console
 
-All CRUD operations were tested, including error scenarios (non-existing resources).
-
-Screenshots – Task 2
-
-Add screenshots here:
-
-Postman POST request
-
-Postman GET request
-
-Swagger UI view
-
-H2 database console
-
-Git Repository
-
-The project is stored in a remote GitHub repository
+**All CRUD operations were tested, including error scenarios (non-existing resources).**
 
 .gitignore files are included
 
 Unnecessary and generated files are excluded from version control
 
-Conclusion
+**Conclusion**
 
 This project demonstrates:
 
-Understanding of Spring Boot fundamentals
+* Understanding of Spring Boot fundamentals
 
-REST API design using HTTP methods
+* REST API design using HTTP methods
 
-Layered architecture and clean code structure
+* Layered architecture and clean code structure
 
-Database integration using Spring Data JPA
+* Database integration using Spring Data JPA
 
-API testing and documentation using Postman and Swagger
-
-The project is fully functional and ready to be presented and explained during online classes.
+* API testing and documentation using Postman and Swagger
