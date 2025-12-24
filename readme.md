@@ -30,14 +30,19 @@ Both applications are fully functional, tested, and ready to be demonstrated.
 ---
 
 ## Project Structure
-
-├── task1/
+```text
+spring-frameworks-apps/
+├── Task1/
 │ └── Basic Spring Boot application
 │
-├── task2/
+├── Task2/
 │ └── CRUD REST API application
 │
+├── images/
+│ └── Screenshots used in this README
+│
 └── README.md
+```
 
 
 Each application follows standard Spring Boot project structure and good development practices.
@@ -68,8 +73,6 @@ The application returns a simple response in the browser confirming that the Spr
 
 ---
 
-### Screenshots – Task 1
-
 ![GET request](./images/16.png)
 - Application running in IntelliJ
 - Browser response on localhost
@@ -96,31 +99,6 @@ The application follows a layered architecture:
 - **Repository layer** – handles database operations  
 - **Domain layer** – represents database entities  
 - **Support layer** – object mapping and exception handling  
-
----
-
-## Package Structure (Task 2)
-
-product
-├── api
-│ └── ProductController
-│
-├── domain
-│ └── Product
-│
-├── service
-│ └── ProductService
-│
-├── repository
-│ └── ProductRepository
-│
-├── support
-│ ├── ProductMapper
-│ └── exception
-│
-└── shared.api.response
-└── ErrorMessageResponse
-
 
 ---
 
@@ -163,13 +141,13 @@ POST /api/v1/products
 
 Response:
 
-* HTTP Status: 201 Created
+* HTTP Status: 201 Created - product was successfully created
 
 * Returns the created product with generated ID
 
 ![Create product](./images/3.png)
 
-**The Database has one product**
+The Database has one product
 ![Database with one product](./images/4.png)
 
 ### Create another product
@@ -185,7 +163,7 @@ POST /api/v1/products
 
 Response:
 
-* HTTP Status: 201 Created
+* HTTP Status: 201 Created - product was successfully created
 
 * Returns the created product with generated ID
 
@@ -213,13 +191,13 @@ PUT /api/v1/products/{id}
 
 Response:
 
-* HTTP Status: 200 OK
+* HTTP Status: 200 OK - product was successfully updated
 
 * Returns product state after update
 
 ![Update product](./images/8.png)
 
-**The updated Database**
+The updated Database
 ![Updated Database](./images/9.png)
 
 ### Get All Products
@@ -237,7 +215,7 @@ Response:
 
 ![Delete product](./images/11.png)
 
-**The Database after deletion**
+The Database after deletion
 ![Updated Database](./images/12.png)
 
 ### Get All Products
